@@ -7,9 +7,9 @@
 # ARRAY_TAGS=(${TAGS// / })
 
 # タグが作成されたらコメント
-ARRAY_TAGS=("release-assessment-all-v2.0.0" "release-assessment-front-v1.0.12"  "release-assessment-front-v0.129.10" "release-assessment-all-v1.100.0" "release-assessment-all-v1.0.2")
+ARRAY_TAGS=("stock-front-v2.0.0" "release-assessment-front-v1.0.12"  "release-assessment-front-v0.129.10" "stock-front-v1.100.0" "stock-front-v1.0.2")
 
-RELEASE_TAG_LIST=("release-assessment-all-v" "release-assessment-front-v")
+RELEASE_TAG_LIST=("release-assessment-front-v" "stock-front-v" "assessment-back-v" "stock-back-v" "assessment-batch-v" "stock-batch-v" "assessment-migration-v")
 
 filteredTag () {
     FILTER_TAGS=()
@@ -66,7 +66,10 @@ getLatest () {
             LATEST_TAG=$TAG
         fi
     done
-    echo $LATEST_TAG
+    if [ -n "$LATEST_TAG" ]; then
+        echo $LATEST_TAG
+    fi
+
 }
 
 echo "〓 最新タグ 〓 〓 〓 〓 〓 〓"
