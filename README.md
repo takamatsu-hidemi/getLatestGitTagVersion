@@ -1,0 +1,2 @@
+# getLatestGitTagVersion
+最新のリリースタグの一覧を取得するスクリプトです
