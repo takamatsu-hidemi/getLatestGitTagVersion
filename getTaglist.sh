@@ -1,15 +1,14 @@
 #!/bin/sh
 
-# タグが作成されたらコメントアウト
+# 各自のプロジェクトの位置に移動
+cd ../hoge
+
 # ローカル環境を最新化
-# git fetch > /dev/null
-# TAGS=`git tag -l`
-# ARRAY_TAGS=(${TAGS// / })
+git fetch > /dev/null
+TAGS=`git tag -l`
+ARRAY_TAGS=(${TAGS// / })
 
-# タグが作成されたらコメント
-ARRAY_TAGS=("stock-front-v2.0.0" "release-assessment-front-v1.0.12"  "release-assessment-front-v0.129.10" "stock-front-v1.100.0" "stock-front-v1.0.2")
-
-RELEASE_TAG_LIST=("release-assessment-front-v" "stock-front-v" "assessment-back-v" "stock-back-v" "assessment-batch-v" "stock-batch-v" "assessment-migration-v")
+RELEASE_TAG_LIST=("assessment-front-v" "stock-front-v" "assessment-back-v" "stock-back-v" "assessment-batch-v" "stock-batch-v" "assessment-migration-v")
 
 filteredTag () {
     FILTER_TAGS=()
