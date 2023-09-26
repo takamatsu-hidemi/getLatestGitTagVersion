@@ -3,12 +3,36 @@
 # 各自のプロジェクトの位置に移動
 cd ../hoge
 
-# ローカル環境を最新化
-git fetch > /dev/null
-TAGS=`git tag -l`
-ARRAY_TAGS=(${TAGS// / })
+RELEASE_TAG_LIST=()
+ASSESSMENT_TAG_LIST=("assessment-front-v" "assessment-back-v" "assessment-batch-v" "assessment-migration-v")
+STOCK_TAG_LIST=("stock-front-v" "stock-back-v" "stock-batch-v")
 
-RELEASE_TAG_LIST=("assessment-front-v" "stock-front-v" "assessment-back-v" "stock-back-v" "assessment-batch-v" "stock-batch-v" "assessment-migration-v")
+if [ $# -ge 2 ]; then
+    echo "引数は2つ以上設定できません"
+    exit 1
+fi
+
+if [ $# -eq 0 ]; then
+    RELEASE_TAG_LIST=(${ASSESSMENT_TAG_LIST[@]})
+    RELEASE_TAG_LIST+=(${STOCK_TAG_LIST[@]})
+fi
+
+if [ $# -eq 1 ]; then
+    if [ $1 = "assessment" ] ; then
+        RELEASE_TAG_LIST=(${ASSESSMENT_TAG_LIST[@]})
+    fi
+
+    if [ $1 = "stock" ] ; then
+        RELEASE_TAG_LIST=(${STOCK_TAG_LIST[@]})
+    fi
+fi
+
+getGitTagList () {
+    # ローカル環境を最新化
+    git fetch > /dev/null
+    TAGS=`git tag -l`
+    ARRAY_TAGS=(${TAGS// / })
+}
 
 filteredTag () {
     FILTER_TAGS=()
@@ -71,6 +95,7 @@ getLatest () {
 
 }
 
+getGitTagList
 echo "〓 最新タグ 〓 〓 〓 〓 〓 〓"
 for RNAME in "${RELEASE_TAG_LIST[@]}"
 do
