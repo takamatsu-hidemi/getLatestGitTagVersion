@@ -4,7 +4,7 @@
 cd ../hoge
 
 RELEASE_TAG_LIST=()
-ASSESSMENT_TAG_LIST=("assessment-front-v" "assessment-back-v" "assessment-batch-v" "assessment-migration-v")
+ASSESSMENT_TAG_LIST=("assessment-front-v" "assessment-back-v" "assessment-batch-v" "assessment-migration-v" "g-auto-front-v")
 STOCK_TAG_LIST=("stock-front-v" "stock-back-v" "stock-batch-v")
 
 if [ $# -ge 2 ]; then
